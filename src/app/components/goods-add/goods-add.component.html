@@ -1,0 +1,23 @@
+<div class="card mt-5">
+    <div class="card-header">Pridėti naują dovaną</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="recipient" class="form-label">Kam skirta dovana</label>
+            <input type="text" name="recipient" id="recipient" class="form-control" [(ngModel)]="recipient">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Dovanos aprašas</label>
+            <input type="text" name="description" id="description" class="form-control" [(ngModel)]="description">
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Būsena</label>
+            <select name="status" id="status" class="form-control"  [(ngModel)]="status">
+                <option value="suplanuota">Suplanuota</option>
+                <option value="nupirkta">Nupirkta</option>
+                <option value="supakuota" >Supakuota</option>
+            </select>
+        </div>
+
+        <button class="btn btn-success" (click)="addNewGood()">Pridėti</button>
+    </div>
+</div>

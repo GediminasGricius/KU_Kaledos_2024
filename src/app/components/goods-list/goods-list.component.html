@@ -1,0 +1,8 @@
+<div class="card mt-5">
+    <div class="card-header">Prekių sąrašas</div>
+    <div class="card-body">
+        <div *ngFor="let good of goods; let i=index">
+            {{ good.recipient }} /  {{ good.description }}
+        </div>
+    </div>
+</div>
