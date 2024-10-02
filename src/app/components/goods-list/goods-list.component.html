@@ -1,8 +1,45 @@
 <div class="card mt-5">
     <div class="card-header">Prekių sąrašas</div>
     <div class="card-body">
-        <div *ngFor="let good of goods; let i=index">
-            {{ good.recipient }} /  {{ good.description }}
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Kam
+                    </th>
+                    <th>
+                        Aprašas
+                    </th>
+                    <th>
+                        Statusas
+                    </th>
+                    <th style="width: 200px;">
+                        Veiksmai
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let good of goods; let i=index">
+                    <td>
+                        {{ good.recipient }} 
+                    </td>
+                    <td>
+                        {{ good.description }}
+                    </td>
+                    <td>
+                        {{ good.status }}
+                    </td>
+                    <td>
+                       <a  class="btn btn-success me-3" [routerLink]="['/good', good.id]">Redaguoti</a>
+                       <button class="btn btn-danger" (click)="deleteGood(good.id)">Ištrinti</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        
+           
+        
     </div>
 </div>

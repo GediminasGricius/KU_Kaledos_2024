@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GoodsService } from '../../services/goods.service';
 import { Good } from '../../models/good';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-goods-add',
@@ -16,7 +17,7 @@ export class GoodsAddComponent {
   public description:string|null=null;
   public status:string|null=null;
 
-  public constructor(private goodsService:GoodsService){
+  public constructor(private goodsService:GoodsService, private router:Router){
 
   }
 
@@ -31,7 +32,9 @@ export class GoodsAddComponent {
         id:null
       };
 
-      this.goodsService.addGood(tmp);
+      this.goodsService.addGood(tmp).subscribe(()=>{
+        this.router.navigate([""]);
+      });
     }
   }
 
