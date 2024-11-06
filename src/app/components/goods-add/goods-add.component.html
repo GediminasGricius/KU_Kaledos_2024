@@ -1,6 +1,14 @@
 <div class="card mt-5">
     <div class="card-header">Pridėti naują dovaną</div>
     <div class="card-body">
+
+        <app-loading *ngIf="isLoading"></app-loading>
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+
         <div class="mb-3">
             <label for="recipient" class="form-label">Kam skirta dovana</label>
             <input type="text" name="recipient" id="recipient" class="form-control" [(ngModel)]="recipient">

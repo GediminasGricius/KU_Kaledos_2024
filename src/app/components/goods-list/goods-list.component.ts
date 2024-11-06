@@ -3,27 +3,34 @@ import { GoodsService } from '../../services/goods.service';
 import { Good } from '../../models/good';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LoadingComponent } from "../loading/loading.component";
 
 @Component({
   selector: 'app-goods-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LoadingComponent],
   templateUrl: './goods-list.component.html',
   styleUrl: './goods-list.component.css'
 })
 export class GoodsListComponent {
 
   public goods:Good[]=[];
+  public isLoading=false;
+  public isError=false;
 
   private loadData(){
-    this.goodsService.loadGoods().subscribe( (data)=>{
-      this.goods=[];
-      for (let k in data){
-       data[k].id=k;
-       this.goods.push(data[k]);
-      }
-      console.log(this.goods);
-     });
+    this.isLoading=true;
+    this.goodsService.loadGoods().subscribe( {
+      next:(data)=>{
+        this.goods=data;
+        this.isLoading=false;
+        this.isError=false;
+       },
+       error:(data)=>{
+        this.isError=true;
+        this.isLoading=false;
+       }
+    });
   }
 
   public constructor ( private goodsService:GoodsService){

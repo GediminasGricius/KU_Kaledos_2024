@@ -1,7 +1,16 @@
 <div class="card mt-5">
     <div class="card-header">Prekių sąrašas</div>
     <div class="card-body">
-        <table class="table">
+        <app-loading  *ngIf="isLoading"></app-loading>
+        
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+        
+
+        <table class="table" *ngIf="!isLoading && !isError">
             <thead>
                 <tr>
                     <th>
@@ -42,4 +51,5 @@
            
         
     </div>
+    
 </div>
