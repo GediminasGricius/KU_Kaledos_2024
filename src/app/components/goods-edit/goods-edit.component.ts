@@ -46,7 +46,7 @@ export class GoodsEditComponent {
         next:()=>{
           this.isLoading=false;
           this.isError=false;
-          this.router.navigate([""]);
+          this.router.navigate(["/list"]);
   
         },
         error:()=>{
