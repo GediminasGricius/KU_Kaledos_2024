@@ -8,14 +8,39 @@
             Įvyko klaida
 
         </div>
+        <form (ngSubmit)="addNewGood(f)" #f="ngForm">
 
+        
         <div class="mb-3">
             <label for="recipient" class="form-label">Kam skirta dovana</label>
-            <input type="text" name="recipient" id="recipient" class="form-control" [(ngModel)]="recipient">
+            <input 
+                    type="text" 
+                    name="recipient" 
+                    id="recipient" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputRecipient.valid && inputRecipient.touched" 
+                    [(ngModel)]="recipient"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputRecipient="ngModel"
+            >
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Dovanos aprašas</label>
-            <input type="text" name="description" id="description" class="form-control" [(ngModel)]="description">
+            <input 
+                type="text" 
+                name="description" 
+                id="description" 
+                class="form-control" 
+                [class.is-invalid]="!inputDescription.valid && inputDescription.touched" 
+                [(ngModel)]="description"
+                
+                required
+                minlength="2"
+                maxlength="256"
+                #inputDescription="ngModel"
+            >
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Būsena</label>
@@ -26,6 +51,7 @@
             </select>
         </div>
 
-        <button class="btn btn-success" (click)="addNewGood()">Pridėti</button>
+        <button class="btn btn-success" [disabled]="!f.valid" >Pridėti</button>
+    </form>
     </div>
 </div>

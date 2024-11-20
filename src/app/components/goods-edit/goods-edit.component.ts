@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GoodsService } from '../../services/goods.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { LoadingComponent } from "../loading/loading.component";
 
 @Component({
@@ -34,14 +34,16 @@ export class GoodsEditComponent {
     });
   }
 
-  public updateRecord(){
-    if (this.recipient!= null && this.description!=null && this.status!=null){
+  public updateRecord(f:NgForm){
+    console.log(f.form.value);
+    
+    
       this.isLoading=true;
       this.goodsService.updateRecord({
         id:this.id,
-        recipient:this.recipient,
-        description:this.description,
-        status:this.status
+        recipient:f.form.value.recipient,
+        description:f.form.value.description,
+        status:f.form.value.status
       }).subscribe({
         next:()=>{
           this.isLoading=false;
@@ -54,7 +56,8 @@ export class GoodsEditComponent {
           this.isLoading=false;
         }
       });
+
     }
-  }
+     
 
 }

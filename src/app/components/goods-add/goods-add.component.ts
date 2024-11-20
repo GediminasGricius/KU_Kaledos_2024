@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GoodsService } from '../../services/goods.service';
 import { Good } from '../../models/good';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from "../loading/loading.component";
@@ -27,14 +27,14 @@ export class GoodsAddComponent {
 
   }
 
-  public addNewGood(){
+  public addNewGood(f:NgForm){
     
-    if (this.description!=null && this.recipient!=null && this.status!=null){
+   
       
       const tmp:Good={
-        description:this.description,
-        recipient:this.recipient,
-        status:this.status,
+        description:f.form.value.description,
+        recipient:f.form.value.recipient,
+        status:f.form.value.status,
         id:null
       };
       this.isLoading=true;
@@ -49,7 +49,7 @@ export class GoodsAddComponent {
           this.isLoading=false;
         }
       });
-    }
+    
   }
 
 }
